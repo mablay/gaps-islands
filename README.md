@@ -12,7 +12,7 @@
 Calculates gaps and islands from an array of ranges.
 
 ```js
-import { islands } from 'gaps-and-islands'
+import { islands } from '@occami/gaps-islands'
 console.log(islands([
   { start: 2, end: 6 },
   { start: 4, end: 8 },
