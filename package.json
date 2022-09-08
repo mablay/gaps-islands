@@ -1,0 +1,22 @@
+{
+  "name": "@occami/gaps-islands",
+  "version": "0.1.0",
+  "description": "finds gaps and islands in an array of ranges",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "pta"
+  },
+  "keywords": [
+    "gap",
+    "island",
+    "overlap",
+    "ranges"
+  ],
+  "author": "marc.ablay@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "pta": "^1.2.0",
+    "zora": "^5.1.0"
+  }
+}
