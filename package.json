@@ -1,6 +1,6 @@
 {
   "name": "@occami/gaps-islands",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "finds gaps and islands in an array of ranges",
   "main": "index.js",
   "type": "module",
@@ -13,13 +13,15 @@
     "overlap",
     "ranges"
   ],
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "author": "marc.ablay@gmail.com",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/mablay/gaps-islands"
-  },  
+  },
   "devDependencies": {
     "pta": "^1.2.0",
     "zora": "^5.1.0"
