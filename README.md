@@ -34,16 +34,26 @@ console.log(findIslands(shifts))
 // find gaps between ranges
 console.log(findGaps(shifts))
 /* [{ start: 8, end: 12 }] */
+```
 
+## Advanced Usage
+If you want fine control over the island reducer, you might want to use `mergeIslands`.
+```js
+import { mergeIslands } from '@occami/gaps-islands'
+const shifts = [
+  { name: 'Alice', start: 2,  end: 6 },
+  { name: 'Bob',   start: 4,  end: 8 },
+  { name: 'Clair', start: 12, end: 16 }
+]
 // reduce information into islands
 // 1. copy data of interest in the range.value property.
-const ranges = shifts.map(r => ({ ...r, value: [r.name] }))
+const ranges = shifts.map(r => ({ ...r, value: r.end - r.start }))
 // 2. define a reducer that merges overlapping ranges into the islands 'value' property.
-const reducer = (a, b) => [...a.value, ...b.value]
+const reducer = (a, b) => a.value + b.value
 // 3. pass the reducer as optional argument.
 console.log(mergeIslands(ranges, reducer))
 /*[
-  { start: 2, end: 8, value: [ 'Alice', 'Bob' ] },
-  { start: 12, end: 16, value: [ 'Clair' ] }
+  { start: 2, end: 8, value: 8 },
+  { start: 12, end: 16, value: 4 }
 ]*/
 ```
