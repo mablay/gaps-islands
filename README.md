@@ -14,7 +14,7 @@ This module answers the same question if your data is stored in an array instead
 
 ## Basic Usage
 ```js
-import { mergeIslands } from '@occami/gaps-islands'
+import { mergeIslands, findGaps } from '@occami/gaps-islands'
 const shifts = [
   { name: 'Alice', start: 2,  end: 6 },
   { name: 'Bob',   start: 4,  end: 8 },
