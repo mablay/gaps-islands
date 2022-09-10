@@ -1,6 +1,6 @@
 {
   "name": "@occami/gaps-islands",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "finds gaps and islands in an array of ranges",
   "main": "index.js",
   "type": "module",
