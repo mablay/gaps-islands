@@ -14,7 +14,7 @@ This module answers the same question if your data is stored in an array instead
 
 ## Basic Usage
 ```js
-import { mergeIslands, findGaps } from '@occami/gaps-islands'
+import { findIslands, findGaps } from '@occami/gaps-islands'
 const shifts = [
   { name: 'Alice', start: 2,  end: 6 },
   { name: 'Bob',   start: 4,  end: 8 },
@@ -22,11 +22,14 @@ const shifts = [
 ]
 
 // find overlapping ranges
-console.log(mergeIslands(shifts))
+console.log(findIslands(shifts))
 /*[
-  { start: 2, end: 8 },
-  { start: 12, end: 16 }
+  { start: 2, end: 8, value: [ { 'Alice', ... }, { 'Bob', ... } ] },
+  { start: 12, end: 16, value: [ { 'Clair', ... } ] }
 ]*/
+// see how start: 2 and end: 8 spans the first two 
+// records, because they overlap, causing an island. 
+// .value aggregates all objects from that island.
 
 // find gaps between ranges
 console.log(findGaps(shifts))

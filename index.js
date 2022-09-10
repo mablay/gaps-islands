@@ -45,6 +45,36 @@ export function mergeIslands (ranges, reducer) {
 }
 
 /**
+ * @typedef RangePicker
+ * @property {string|function():number|Date} [start]
+ * @property {string|function():number|Date} [end]
+ * @property {string|null|function():any} [value]
+ */
+
+/** Allows findIsland options to be a string, a function or undefined.  */
+const picker = (prop, defaultPicker) => typeof prop === 'string' ? x => x[prop] : typeof prop === 'function' ? prop : defaultPicker
+
+/**
+ * Finds islands of overlapping ranges, storing the original range data in the islands value property. 
+ * @param {any[]} ranges 
+ * @param {RangePicker} [options]
+ * @returns {Range[]}
+ */
+export function findIslands (ranges, options = {}) {
+  const noValue = options.value === null
+  const startPicker = picker(options.start, x => x.start)
+  const endPicker = picker(options.end, x => x.end)
+  const valuePicker = picker(options.value, x => x)
+  const mappedRanges = ranges.map(r => ({
+    start: startPicker(r),
+    end: endPicker(r),
+    value: noValue ? undefined : [valuePicker(r)]
+  }))
+  const concatenate = noValue ? undefined : (range1, range2) => range1.value.concat(range2.value)
+  return mergeIslands(mappedRanges, concatenate)
+}
+
+/**
  * Lists gaps between ranges
  * @param {Range[]} ranges array of ranges
  * @returns {Range[]} the gaps between ranges.

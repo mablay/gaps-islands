@@ -1,5 +1,5 @@
 import { test } from 'zora'
-import { mergeIslands, findGaps } from '../index.js'
+import { mergeIslands, findGaps, findIslands } from '../index.js'
 import { fixtures } from './fixtures.js'
 
 for (const fixture of fixtures) {
@@ -53,4 +53,20 @@ test('collect ranges on islands', t => {
     { start: 2, end: 7, value: ['alice', 'clair'] },
     { start: 8, end: 9, value: ['bob'] }
   ])
+})
+
+test('find islands', t => {
+  const events = [
+    { min: 2,  max: 6, name: 'foo' },
+    { min: 4,  max: 8, name: 'bar' },
+    { min: 12, max: 16, name: 'baz' },
+  ]
+  
+  // find overlapping ranges
+  const islands = findIslands(events, { start: 'min', end: 'max', value: 'name' })
+  const expected = [
+    { start: 2, end: 8, value: [ 'foo', 'bar' ] },
+    { start: 12, end: 16, value: [ 'baz' ] }
+  ]
+  t.deepEqual(islands, expected)
 })
